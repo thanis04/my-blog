@@ -12,6 +12,7 @@ const LoginPage = () => {
     const logIn = async () => {
         try {
             await signInWithEmailAndPassword(getAuth(), email, password);
+            console.log("password correct");
             navigate('/articles');
         } catch(e) {
             setError(e.message);
@@ -23,17 +24,18 @@ const LoginPage = () => {
             <h1>Log In</h1>
             {error && <p className="error">{error}</p>}
             <input 
+                type="email"
                 placeholder="Your email address"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
             />
             <input
-                placeholder="Your password" 
                 type="password"
+                placeholder="Your password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />
-            <button onChange={logIn}>Log In</button>
+            <button onClick={logIn}>Log In</button>
             <Link to="/create-account">Don't have an account? Create one here</Link>
         </>
     );
